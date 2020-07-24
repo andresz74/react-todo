@@ -1,6 +1,6 @@
 import { style as s } from 'typestyle';
 
-export const getStyle = completed => {
+export const getTitleStyle = completed => {
 	return s({
 		display: 'flex',
 		flexGrow: 1,

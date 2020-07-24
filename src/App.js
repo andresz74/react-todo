@@ -4,26 +4,9 @@ import './App.css';
 import Todos from './components/todo/Todos';
 import Header from './components/layout/Header';
 import AddTodo from './components/todo/AddTodo';
-import { uuid } from './utility';
 import About from './components/pages/About';
 
-const initialState = [
-	{
-		id: uuid(),
-		title: 'Take out the trash',
-		completed: false,
-	},
-	{
-		id: uuid(),
-		title: 'Dinner with wife',
-		completed: false,
-	},
-	{
-		id: uuid(),
-		title: 'Meeting with boss',
-		completed: false,
-	},
-];
+const initialState = [];
 
 const App = () => {
 	const [todos, setTodos] = React.useState(initialState);
@@ -38,18 +21,37 @@ const App = () => {
 		);
 	};
 	const deleteTodo = id => {
-		setTodos([...todos.filter(todo => todo.id !== id)]);
+		//
+		fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+			method: 'DELETE',
+		})
+			.then(response => response.json())
+			.then(() => setTodos([...todos.filter(todo => todo.id !== id)]));
 	};
 	const addNewTodo = title => {
 		if (title !== '') {
-			setTodos([...todos, { title, id: uuid(), completed: false }]);
+			fetch('https://jsonplaceholder.typicode.com/todos', {
+				method: 'POST',
+				headers: {
+					'Content-type': 'application/json; charset=UTF-8',
+				},
+				body: JSON.stringify({ title, completed: false }),
+			})
+				.then(response => response.json())
+				.then(data => setTodos([...todos, data]));
 		}
 	};
+	React.useEffect(() => {
+		fetch('https://jsonplaceholder.typicode.com/todos?_limit=10')
+			.then(response => response.json())
+			.then(data => setTodos(data));
+	}, []);
 	return (
 		<Router>
 			<div className="App">
 				<Header />
-				<Route exact
+				<Route
+					exact
 					path="/"
 					render={() => (
 						<>
