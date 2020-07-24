@@ -1,6 +1,8 @@
 # Todo List Crash Course
-Traversy Media
-[React JS Crash Course](https://youtu.be/sBws8MSXN7A)
+- Crash course from Traversy Media: [React JS Crash Course](https://youtu.be/sBws8MSXN7A)
+
+- Install [Visual Studio Code](https://code.visualstudio.com/Download).
+- Instal [Prettier extension](https://prettier.io) for VSC.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
