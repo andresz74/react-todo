@@ -1,9 +1,11 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import Todos from './components/todo/Todos';
 import Header from './components/layout/Header';
 import AddTodo from './components/todo/AddTodo';
 import { uuid } from './utility';
+import About from './components/pages/About';
 
 const initialState = [
 	{
@@ -14,7 +16,7 @@ const initialState = [
 	{
 		id: uuid(),
 		title: 'Dinner with wife',
-		completed: true,
+		completed: false,
 	},
 	{
 		id: uuid(),
@@ -23,7 +25,7 @@ const initialState = [
 	},
 ];
 
-function App() {
+const App = () => {
 	const [todos, setTodos] = React.useState(initialState);
 	const markComplete = id => {
 		setTodos(
@@ -38,18 +40,28 @@ function App() {
 	const deleteTodo = id => {
 		setTodos([...todos.filter(todo => todo.id !== id)]);
 	};
-	const AddNewTodo = title => {
+	const addNewTodo = title => {
 		if (title !== '') {
 			setTodos([...todos, { title, id: uuid(), completed: false }]);
 		}
 	};
 	return (
-		<div className="App">
-			<Header />
-			<AddTodo AddNewTodo={AddNewTodo} />
-			<Todos todos={todos} markComplete={markComplete} deleteTodo={deleteTodo} />
-		</div>
+		<Router>
+			<div className="App">
+				<Header />
+				<Route exact
+					path="/"
+					render={() => (
+						<>
+							<AddTodo addNewTodo={addNewTodo} />
+							<Todos todos={todos} markComplete={markComplete} deleteTodo={deleteTodo} />
+						</>
+					)}
+				/>
+				<Route path="/about" component={About} />
+			</div>
+		</Router>
 	);
-}
+};
 
 export default App;

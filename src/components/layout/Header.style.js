@@ -5,6 +5,22 @@ export const headerStyle = s({
 	backgroundColor: '#333',
 	color: '#fff',
 	display: 'flex',
+	flexDirection: 'column',
 	justifyContent: 'center',
-	height: '75px',
+	padding: '15px 0',
 });
+
+export const titleStyle = s({
+	display: 'block',
+});
+
+export const menuStyle = s({
+	color: '#fff',
+	display: 'flex',
+	flexDirection: 'row',
+});
+
+export const linkStyle = s({
+	color: '#fff',
+	marginRight: '15px',
+})

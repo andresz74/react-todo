@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as style from './AddTodo.style';
 
-const AddTodo = ({AddNewTodo}) => {
+const AddTodo = ({addNewTodo}) => {
 	const [newTitle, setNewTitle] = React.useState('');
 
 	const onChangeTitle = e => {
@@ -10,7 +10,7 @@ const AddTodo = ({AddNewTodo}) => {
 	};
 	const onSubmitTodo = e => {
 		e.preventDefault();
-		AddNewTodo(newTitle);
+		addNewTodo(newTitle);
 		setNewTitle('');
 	};
 	return (
