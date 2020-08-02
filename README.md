@@ -1,5 +1,6 @@
 # Todo List Crash Course
-- Crash course from Traversy Media: [React JS Crash Course](https://youtu.be/sBws8MSXN7A)
+- Crash course from Traversy Media: [React JS Crash Course](https://youtu.be/sBws8MSXN7A)     
+I use functional components instead of classes.
 
 ## Requirements
 - Install [Visual Studio Code](https://code.visualstudio.com/Download).
